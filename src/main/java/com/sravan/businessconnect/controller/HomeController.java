@@ -113,5 +113,11 @@ public class HomeController {
 
         return resultPage.getContent();
     }*/
+
+	// curl -i --user admin:secret -H Accept:application/json http://localhost:8080/abc/todos
+	@RequestMapping(value = "/todos", method = RequestMethod.GET)
+	public void doTodoOpentions(){
+		homeService.todoOperations();
+	}
 	
 }

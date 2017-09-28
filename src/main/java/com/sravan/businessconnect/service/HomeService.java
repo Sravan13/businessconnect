@@ -1,13 +1,16 @@
 package com.sravan.businessconnect.service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sravan.businessconnect.app.dao.Category;
+import com.sravan.businessconnect.app.dao.Todo;
 import com.sravan.businessconnect.app.repository.CategoryRepo;
+import com.sravan.businessconnect.app.repository.TodoRepository;
 import com.sravan.businessconnect.sec.dao.User;
 import com.sravan.businessconnect.sec.repository.UserRepository;
 
@@ -19,6 +22,9 @@ public class HomeService {
 	
 	@Autowired
 	private UserRepository userRepo;
+	
+	@Autowired
+	private TodoRepository todoRepository;
 	
 	public List<Category> getCategories(){
 		
@@ -38,6 +44,17 @@ public class HomeService {
 		}catch(Exception ex){
 			return Collections.emptyList();
 		}
+	}
+	
+	public void todoOperations(){
+		
+		Todo  todo = todoRepository.findById(2);
+		List<Todo>  todoList = todoRepository.findByTitle("abc");
+		String  title = todoRepository.findTitleById(2l);
+	    
+		System.out.println(title);
+		
+
 	}
 
 }
