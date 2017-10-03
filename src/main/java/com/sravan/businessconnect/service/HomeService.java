@@ -51,6 +51,16 @@ public class HomeService {
 		Todo  todo = todoRepository.findById(2);
 		List<Todo>  todoList = todoRepository.findByTitle("abc");
 		String  title = todoRepository.findTitleById(2l);
+		
+		List<Todo>  todos = todoRepository.findBySearchTermNative("abc");
+		
+		List<Todo>  namedTodos = todoRepository.nativeFindByTitleIs();
+		List<Todo>  nameNativeTodos = todoRepository.findByTitleIs();
+		
+		List<Todo>  nameTodosWithParameter = todoRepository.findBySearchTermNamed("abc");
+		List<Todo>  nameNativeTodosWithParameter = todoRepository.findBySearchTermNamedNative("abc");
+		
+		
 	    
 		System.out.println(title);
 		
