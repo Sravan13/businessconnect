@@ -2,16 +2,15 @@ package com.sravan.businessconnect.app.repository;
 
 import java.util.List;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.web.context.SaveContextOnUpdateOrErrorResponseWrapper;
 
 import com.sravan.businessconnect.app.dao.Todo;
-import java.util.stream.Stream;
 
 @org.springframework.stereotype.Repository
-public interface TodoRepository extends Repository<Todo, Long> {
+public interface TodoRepository extends  JpaRepository<Todo, Long> , JpaSpecificationExecutor<Todo> {
 	
 	Todo findById(long id);
 	
