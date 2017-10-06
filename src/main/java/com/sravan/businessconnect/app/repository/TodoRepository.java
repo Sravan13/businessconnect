@@ -2,6 +2,9 @@ package com.sravan.businessconnect.app.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -40,6 +43,26 @@ public interface TodoRepository extends  JpaRepository<Todo, Long> , JpaSpecific
 	
 	@Query(nativeQuery = true)
 	List<Todo> findBySearchTermNamedNative(@Param("searchTerm") String searchTerm);
+	
+	
+	
+	@Query("SELECT t FROM Todo t WHERE " +
+            "LOWER(t.title) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR " +
+            "LOWER(t.description) LIKE LOWER(CONCAT('%',:searchTerm, '%'))")
+    List<Todo> findBySearchTermListPageable(@Param("searchTerm") String searchTerm, 
+                                Pageable pageRequest);
+ 
+    @Query("SELECT t FROM Todo t WHERE " +
+            "LOWER(t.title) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR " +
+            "LOWER(t.description) LIKE LOWER(CONCAT('%',:searchTerm, '%'))")
+    Page<Todo> findBySearchTermPagePageable(@Param("searchTerm") String searchTerm, 
+                                Pageable pageRequest);
+                                 
+    @Query("SELECT t FROM Todo t WHERE " +
+            "LOWER(t.title) LIKE LOWER(CONCAT('%',:searchTerm, '%')) OR " +
+            "LOWER(t.description) LIKE LOWER(CONCAT('%',:searchTerm, '%'))")
+    Slice<Todo> findBySearchTermSlicePageable(@Param("searchTerm") String searchTerm, 
+                                 Pageable pageRequest);
 	
 	
 	
