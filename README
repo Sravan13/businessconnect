@@ -1,2 +1,8 @@
 
-This application cover the concepts of Spring boot , Spring rest and Spring data jpa
+1.This application cover the concepts of Spring boot , Spring rest and Spring data jpa
+2.Set profile in jvm args while running the application . here we maintained two profiles 
+  1. dev / prod
+  2. application / integrationtest
+
+ example of setting profile in jvm args is 
+ -Dspring.profiles.active=dev,application
