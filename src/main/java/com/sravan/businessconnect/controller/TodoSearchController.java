@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sravan.businessconnect.app.dao.Todo;
 import com.sravan.businessconnect.todo.service.TodoDTO;
 import com.sravan.businessconnect.todo.service.TodoSearchService;
 
@@ -23,10 +24,12 @@ final class TodoSearchController {
     @Qualifier("todoSearchService")
     private TodoSearchService todoSearchService;
 
-    /*@Autowired
-    public TodoSearchController(RepositoryTodoSearchService searchService) {
-        this.todoSearchService = searchService;
-    }*/
+    // curl -i --user admin:secret -H Accept:application/json http://localhost:8080/todo/save
+    @RequestMapping(value = "/todo/save", method = RequestMethod.GET)
+    public TodoDTO saveTodo() {
+    	TodoDTO  todoDTO = todoSearchService.save();
+    	return todoDTO;
+    }
 
    
     /**

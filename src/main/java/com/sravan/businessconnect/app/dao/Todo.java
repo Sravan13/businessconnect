@@ -45,7 +45,7 @@ import static com.sravan.businessconnect.todo.service.PreCondition.notNull;
 })
 
 
-public class Todo {
+public class Todo extends BaseEntity {
 	
 	
 	public static final int MAX_LENGTH_DESCRIPTION = 500;
@@ -55,16 +55,16 @@ public class Todo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
  
-    @Column(name = "creation_time", nullable = false)
+    @Column(name = "description", length = 500)
+    private String description;
+    
+    /*@Column(name = "creation_time", nullable = false)
 	@Temporal(TemporalType.DATE)
     private Date creationTime;
  
-    @Column(name = "description", length = 500)
-    private String description;
- 
     @Column(name = "modification_time")
 	@Temporal(TemporalType.DATE)
-    private Date modificationTime;
+    private Date modificationTime;*/
  
     @Column(name = "title", nullable = false, length = 100)
     private String title;
@@ -96,13 +96,13 @@ public class Todo {
 		this.id = id;
 	}
 
-	public Date getCreationTime() {
+/*	public Date getCreationTime() {
 		return creationTime;
 	}
 
 	public void setCreationTime(Date creationTime) {
 		this.creationTime = creationTime;
-	}
+	}*/
 
 	public String getDescription() {
 		return description;
@@ -112,13 +112,13 @@ public class Todo {
 		this.description = description;
 	}
 
-	public Date getModificationTime() {
+	/*public Date getModificationTime() {
 		return modificationTime;
 	}
 
 	public void setModificationTime(Date modificationTime) {
 		this.modificationTime = modificationTime;
-	}
+	}*/
 
 	public String getTitle() {
 		return title;
@@ -156,11 +156,11 @@ public class Todo {
 	public String toString() {
 	        return new ToStringBuilder(this)
 	                .append("createdByUser", this.createdByUser)
-	                .append("creationTime", this.creationTime)
+	                .append("creationTime", getCreationTime())
 	                .append("description", this.description)
 	                .append("id", this.id)
 	                .append("modifiedByUser", this.modifiedByUser)
-	                .append("modificationTime", this.modificationTime)
+	                .append("modificationTime", getModificationTime())
 	                .append("title", this.title)
 	                .append("version", this.version)
 	                .toString();
