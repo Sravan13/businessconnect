@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.auditing.DateTimeProvider;
+import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -20,6 +21,7 @@ import com.sravan.businessconnect.properties.BussinessConnectDbProperties;
 import com.sravan.businessconnect.todo.service.AuditingDateTimeProvider;
 import com.sravan.businessconnect.todo.service.CurrentTimeDateTimeService;
 import com.sravan.businessconnect.todo.service.DateTimeService;
+import com.sravan.businessconnect.todo.service.UsernameAuditorAware;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
@@ -94,6 +96,25 @@ public class BussinessConnectDBConfig {
     @Bean
     DateTimeService currentTimeDateTimeService() {
         return new CurrentTimeDateTimeService();
+    }
+    
+    /**
+     * This below method for spring data auditing .
+     * We can configure the application context of our application by making the following changes to the configuration class that configures the persistence layer of our application:
+
+	  Create an auditorProvider() method that returns an AuditorAware<String> object.
+	  Implement the method by creating a new UsernameAuditorAware object.Annotate the method with the @Bean annotation.
+	  Enable the auditing support of Spring Data JPA by annotating the configuration class with the @EnableJpaAuditing annotation.
+	  
+	  Because we declared only one AuditorAware bean, the auditing infrastructure finds it automatically and uses it when it has 
+	  to set the information of the authenticated user to the field(s) of the saved or updated entity object. If we declare multiple 
+	  AuditorAware beans, we can configure the used bean by setting the value of the auditorAwareRef attribute of the 
+	  @EnableJpaAuditing annotation.
+	  
+    */
+    @Bean
+    AuditorAware<String> auditorProvider() {
+        return new UsernameAuditorAware();
     }
         
 

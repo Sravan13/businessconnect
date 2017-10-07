@@ -39,9 +39,9 @@ public class RepositoryTodoSearchService implements TodoSearchService {
 	@Override
 	public TodoDTO save() {
 		Todo todo = new Todo();
-		todo.setVersion(11);
+		todo.setVersion(12);
 		todo.setTitle("abc");
-		todo.setDescription("todo description 11");
+		todo.setDescription("todo description 12");
 		try{
 		todo = todoRepository.save(todo);
 		}catch (DataIntegrityViolationException e) {

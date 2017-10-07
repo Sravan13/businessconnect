@@ -72,13 +72,13 @@ public class Todo extends BaseEntity {
     @Version
     private long version;
     
-    @Column(name = "created_by_user", nullable = false)
+    /*@Column(name = "created_by_user", nullable = false)
     @CreatedBy
     private String createdByUser;
     
     @Column(name = "modified_by_user", nullable = false)
     @LastModifiedBy
-    private String modifiedByUser;
+    private String modifiedByUser;*/
     
 	public Todo() {
 	}
@@ -136,7 +136,7 @@ public class Todo extends BaseEntity {
 		this.version = version;
 	}
 	
-	public String getCreatedByUser() {
+/*	public String getCreatedByUser() {
 		return createdByUser;
 	}
 
@@ -150,16 +150,16 @@ public class Todo extends BaseEntity {
 
 	public void setModifiedByUser(String modifiedByUser) {
 		this.modifiedByUser = modifiedByUser;
-	}
+	}*/
 
 	@Override
 	public String toString() {
 	        return new ToStringBuilder(this)
-	                .append("createdByUser", this.createdByUser)
+	                .append("createdByUser", getCreatedByUser())
 	                .append("creationTime", getCreationTime())
 	                .append("description", this.description)
 	                .append("id", this.id)
-	                .append("modifiedByUser", this.modifiedByUser)
+	                .append("modifiedByUser", getModifiedByUser())
 	                .append("modificationTime", getModificationTime())
 	                .append("title", this.title)
 	                .append("version", this.version)

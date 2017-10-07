@@ -7,7 +7,9 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
  
@@ -30,6 +32,15 @@ public abstract class BaseEntity {
     @LastModifiedDate
     private Date modificationTime;
     
+    
+    @Column(name = "created_by_user", nullable = false)
+    @CreatedBy
+    private String createdByUser;
+    
+    @Column(name = "modified_by_user", nullable = false)
+    @LastModifiedBy
+    private String modifiedByUser;
+    
     public Date getModificationTime() {
 		return modificationTime;
 	}
@@ -44,6 +55,22 @@ public abstract class BaseEntity {
 
 	public void setCreationTime(Date creationTime) {
 		this.creationTime = creationTime;
+	}
+	
+	public String getCreatedByUser() {
+		return createdByUser;
+	}
+
+	public void setCreatedByUser(String createdByUser) {
+		this.createdByUser = createdByUser;
+	}
+
+	public String getModifiedByUser() {
+		return modifiedByUser;
+	}
+
+	public void setModifiedByUser(String modifiedByUser) {
+		this.modifiedByUser = modifiedByUser;
 	}
 	
 }
