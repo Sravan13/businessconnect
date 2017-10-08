@@ -13,7 +13,7 @@ import org.springframework.data.repository.query.Param;
 import com.sravan.businessconnect.app.dao.Todo;
 
 @org.springframework.stereotype.Repository
-public interface TodoRepository extends  JpaRepository<Todo, Long> , JpaSpecificationExecutor<Todo> {
+public interface TodoRepository extends  JpaRepository<Todo, Long> , JpaSpecificationExecutor<Todo> , CustomTodoRepository {
 	
 	Todo findById(long id);
 	

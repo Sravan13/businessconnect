@@ -52,6 +52,13 @@ public class RepositoryTodoSearchService implements TodoSearchService {
 	}
 	
 	
+	@Override
+	public List<TodoSearchResultDTO> findBySearchTermWithCustomRepo(String searchTerm){
+		List<TodoSearchResultDTO> pageSearchResults = todoRepository.findBySearchTerm(searchTerm);
+		return pageSearchResults;
+	}
+	
+	
 	public List<TodoDTO> findBySearchTermWithPagination(String searchTerm, Pageable pageable){
 		Page<Todo> pageSearchResults = todoRepository.findAll(titleOrDescriptionContainsIgnoreCase(searchTerm), pageable);
 		return TodoMapper.mapEntitiesIntoDTOs(pageSearchResults.getContent());

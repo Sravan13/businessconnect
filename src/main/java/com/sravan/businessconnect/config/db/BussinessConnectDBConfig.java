@@ -13,6 +13,7 @@ import org.springframework.data.auditing.DateTimeProvider;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -116,6 +117,13 @@ public class BussinessConnectDBConfig {
     AuditorAware<String> auditorProvider() {
         return new UsernameAuditorAware();
     }
+    
+    /*
+     * here jdbc template which we are used in making custom repository
+     */
+    @Bean
+    NamedParameterJdbcTemplate jdbcTemplate(DataSource bcDataSource) {
+        return new NamedParameterJdbcTemplate(bcDataSource);
+    }
         
-
 }

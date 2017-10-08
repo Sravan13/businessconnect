@@ -17,4 +17,6 @@ public interface TodoSearchService {
 	public List<TodoDTO> findBySearchTermWithPagination(String searchTerm, Pageable pageable);
 	
 	public TodoDTO save();
+	
+	public List<TodoSearchResultDTO> findBySearchTermWithCustomRepo(String searchTerm);
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sravan.businessconnect.app.dao.Todo;
 import com.sravan.businessconnect.todo.service.TodoDTO;
+import com.sravan.businessconnect.todo.service.TodoSearchResultDTO;
 import com.sravan.businessconnect.todo.service.TodoSearchService;
 
 
@@ -57,6 +58,13 @@ final class TodoSearchController {
     @RequestMapping(value = "/todo/searchWithPagination", method = RequestMethod.GET)
     public  List<TodoDTO> findBySearchTermWithPagination(@RequestParam("searchTerm") String searchTerm,Pageable pageable) {
         List<TodoDTO> searchResults = todoSearchService.findBySearchTermWithPagination(searchTerm,pageable);
+        return searchResults;
+    }
+    
+    // curl -i --user admin:secret -H Accept:application/json http://localhost:8080/todo/searchWithCustomRepo?searchTerm=abc
+    @RequestMapping(value = "/todo/searchWithCustomRepo", method = RequestMethod.GET)
+    public  List<TodoSearchResultDTO> findBySearchTermWithCustomRepo(@RequestParam("searchTerm") String searchTerm) {
+        List<TodoSearchResultDTO> searchResults = todoSearchService.findBySearchTermWithCustomRepo(searchTerm);
         return searchResults;
     }
 }
