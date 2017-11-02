@@ -34,10 +34,17 @@ as the value of of its dataTimeProviderRef attribute.*/
 					   entityManagerFactoryRef = "bcEntityManagerFactory",
 					   transactionManagerRef = "bcTransactionManager")
 @EnableJpaAuditing(dateTimeProviderRef = "dateTimeProvider")
+//@Profile({Profiles.APPLICATION})
 public class BussinessConnectDBConfig {
 	
 	@Autowired
 	private BussinessConnectDbProperties bcProperties;
+	
+/*	@Bean
+	@Profile({"test"})
+	public BussinessConnectDbProperties bcProperties(){
+		return new BussinessConnectDbProperties();
+	}*/
 	
 	@Bean
 	public DataSource bcDataSource(){
@@ -98,6 +105,9 @@ public class BussinessConnectDBConfig {
     DateTimeService currentTimeDateTimeService() {
         return new CurrentTimeDateTimeService();
     }
+    
+    
+ 
     
     /**
      * This below method for spring data auditing .

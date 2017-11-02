@@ -1,10 +1,14 @@
 package com.sravan.businessconnect.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+
+import com.sravan.businessconnect.config.db.Profiles;
 
 @Component
 @ConfigurationProperties(prefix="bussinessConnect.hibernate")
+@Profile({Profiles.APPLICATION,Profiles.INTEGRATION_TEST})
 public class BussinessConnectDbProperties {
 	
 	private String driver;

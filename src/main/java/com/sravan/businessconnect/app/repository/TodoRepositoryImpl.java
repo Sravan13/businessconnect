@@ -43,3 +43,34 @@ public class TodoRepositoryImpl implements CustomTodoRepository {
 	}
 
 }
+
+/*
+ * 
+ 
+We can now implement our custom repository interface by following these steps:
+
+Create a custom repository class that implements the CustomTodoRepository interface. 
+By default, the name of a custom repository class must follow this syntax: 
+[The name of the repository interface]Impl. Because the name of our repository interface is 
+TodoRepository, the name of our custom repository class must be TodoRepositoryImpl.
+
+Annotate the created class with the @Repository annotation.
+Create an SQL query that returns the id and title of todo entries, whose title or description contains
+the given search term, and sorts the query results in ascending order by using the value of the title 
+column. Set this SQL query as the value of a static final field.
+ 
+Add a final NamedParameterJdbcTemplate field to repository class and inject the value of this 
+field by using constructor injection.
+
+Implement the findBySearchTerm() method by following these steps:
+Annotate the method with the @Transactional annotation and mark the transaction as read-only. 
+This ensures that our SQL query is always invoked inside a read-only transaction.
+
+Create a Map object, which contains the query parameters of our SQL query, and put the search term 
+given as a method parameter into the created map.
+Invoke the SQL query and transform the query results into a list of TodoSearchResultDTO objects by 
+using the BeanPropertyRowMapper class. We can use this method as long as the aliases of the selected columns
+matches with the property names of the “target class”.
+Return the query results.
+
+*/

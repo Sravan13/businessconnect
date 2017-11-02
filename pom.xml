@@ -70,7 +70,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>test</scope>
+			<version>1.4.194</version>
+		</dependency>
 		<dependency>
     		<groupId>org.springframework.boot</groupId>
     		<artifactId>spring-boot-starter-ws</artifactId>
@@ -89,21 +94,43 @@
     		<artifactId>HikariCP</artifactId>
     		<version>2.6.1</version>
 		</dependency>
-		
-		
 
-		<dependency>
-			<groupId>com.jayway.restassured</groupId>
-			<artifactId>rest-assured</artifactId>
-			<version>2.9.0</version>
-			<!-- <scope>test</scope> -->
-			<exclusions>
-				<exclusion>
-					<artifactId>commons-logging</artifactId>
-					<groupId>commons-logging</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
+
+
+	<dependency>
+		<groupId>com.jayway.restassured</groupId>
+		<artifactId>rest-assured</artifactId>
+		<version>2.9.0</version>
+		<!-- <scope>test</scope> -->
+		<exclusions>
+			<exclusion>
+				<artifactId>commons-logging</artifactId>
+				<groupId>commons-logging</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<!-- Remember to exclude the JUnit dependency. We use DbUnit for initializing our database 
+	into a known state before each test case is invoked -->
+	<dependency>
+		<groupId>org.dbunit</groupId>
+		<artifactId>dbunit</artifactId>
+		<version>2.5.1</version>
+		<scope>test</scope>
+		<exclusions>
+			<exclusion>
+				<artifactId>junit</artifactId>
+				<groupId>junit</groupId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<!--  integrates DbUnit with the Spring Test framework -->
+	<dependency>
+		<groupId>com.github.springtestdbunit</groupId>
+		<artifactId>spring-test-dbunit</artifactId>
+		<version>1.2.1</version>
+		<scope>test</scope>
+	</dependency>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2 -->
 		<!-- https://mvnrepository.com/artifact/org.apache.axis2/axis2-transport-http -->
 
