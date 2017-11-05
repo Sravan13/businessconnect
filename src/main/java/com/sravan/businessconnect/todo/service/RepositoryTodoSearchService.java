@@ -10,6 +10,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.sravan.businessconnect.app.dao.Todo;
@@ -26,13 +27,15 @@ public class RepositoryTodoSearchService implements TodoSearchService {
 	//@Transactional(readOnly = true)
 	@Override
 	public List<TodoDTO> findBySearchTerm(String searchTerm) {
-		List<Todo> searchResults = todoRepository.findAll(titleOrDescriptionContainsIgnoreCase(searchTerm), orderBy());
+		Specification<Todo> searchTermSample = TodoSpecifications.titleOrDescriptionContainsIgnoreCase(searchTerm);
+		Sort sort = orderBy();
+		List<Todo> searchResults = todoRepository.findAll(searchTermSample, sort);
 		return TodoMapper.mapEntitiesIntoDTOs(searchResults);
 	}
 	
 	@Override
 	public List<TodoDTO> findBySearchTerm(String searchTerm, Sort sort) {
-		List<Todo> searchResults = todoRepository.findAll(titleOrDescriptionContainsIgnoreCase(searchTerm), sort);
+		List<Todo> searchResults = todoRepository.findAll(TodoSpecifications.titleOrDescriptionContainsIgnoreCase(searchTerm), sort);
 		return TodoMapper.mapEntitiesIntoDTOs(searchResults);
 	}
 	

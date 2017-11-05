@@ -6,13 +6,13 @@ import com.sravan.businessconnect.app.dao.Todo;
 
 public final class TodoMapper {
 	
-	static List<TodoDTO> mapEntitiesIntoDTOs(List<Todo> entities){
+	public static List<TodoDTO> mapEntitiesIntoDTOs(List<Todo> entities){
 		return entities.stream()
 				.map(TodoMapper::mapEntityIntoDTO)
 				.collect(toList());
 	}
 	
-	static TodoDTO mapEntityIntoDTO(Todo entity){
+	public static TodoDTO mapEntityIntoDTO(Todo entity){
 		TodoDTO dto = new TodoDTO();
 
         dto.setCreatedByUser(entity.getCreatedByUser());

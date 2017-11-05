@@ -8,7 +8,7 @@ public final class TodoSpecifications {
 	
 	 private TodoSpecifications() {}
 	 
-	 static Specification<Todo> titleOrDescriptionContainsIgnoreCase(String searchTerm) {
+	 public static Specification<Todo> titleOrDescriptionContainsIgnoreCase(String searchTerm) {
 		 
 		 return (root,query,cb) -> {
 			 String containsLikePattern = getContainsLikePattern(searchTerm);

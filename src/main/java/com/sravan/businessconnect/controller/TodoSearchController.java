@@ -19,7 +19,7 @@ import com.sravan.businessconnect.todo.service.TodoSearchService;
 
 @RestController
 @CrossOrigin
-final class TodoSearchController {
+public final class TodoSearchController {
 
     @Autowired
     @Qualifier("todoSearchService")
