@@ -28,6 +28,22 @@ import com.sravan.businessconnect.controller.TodoSearchController;
 import com.sravan.businessconnect.todo.service.TodoMapper;
 import com.sravan.businessconnect.todo.service.TodoSearchService;
 
+/*
+To test the Controllers, we can use @WebMvcTest. It will auto-configure the Spring MVC 
+infrastructure for our unit tests.
+
+In most of the cases, @WebMvcTest will be limited to bootstrap a single controller. It is 
+used along with @MockBean to provide mock implementations for required dependencies.
+
+@WebMvcTest also auto-configures MockMvc which offers a powerful way of easy testing MVC 
+controllers without starting a full HTTP server.
+
+The get(…) method call can be replaced by other methods corresponding to HTTP verbs like put(), 
+post(), etc. Please note that we are also setting the content type in the request.
+
+MockMvc is flexible, and we can create any request using it.
+
+*/
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(TodoSearchController.class)
